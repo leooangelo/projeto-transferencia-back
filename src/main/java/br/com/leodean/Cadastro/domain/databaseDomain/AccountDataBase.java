@@ -1,0 +1,37 @@
+package br.com.leodean.Cadastro.domain.databaseDomain;
+
+import lombok.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "TB_Account")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class AccountDataBase  implements Serializable {
+
+    @Id
+    @Column(name = "id_conta", nullable = false)
+    private String account_id;
+
+    @Column(name = "id_correntista", nullable = false)
+    private String CPFCorrentista;
+
+    @Column(name = "agencia", nullable = false)
+    private String agencia;
+
+    @Column(name = "codigo_conta", nullable = false)
+    private String numeroConta;
+
+    @Column(name = "Data_Criação", nullable = false)
+    private LocalDateTime localDate;
+
+}
