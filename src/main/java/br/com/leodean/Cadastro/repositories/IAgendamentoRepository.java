@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface IAgendamentoRepository extends JpaRepository<AgendamentoDataBase, String> {
     //@Query("select a from AgendamentoDataBase a where a.agenciaOrigem like :agenciaOrigem and a.contaOrigem like :contaOrigem")
     Page<AgendamentoDataBase> findByIdPessoaOrigem(Pageable pageable, String IdPessoaOrigem);
+    
 }

@@ -6,14 +6,14 @@ import br.com.leodean.Cadastro.domain.mapper.AccountMapper;
 import br.com.leodean.Cadastro.exceptions.ExceptionApiCadastro;
 import br.com.leodean.Cadastro.repositories.IAccountRepository;
 import br.com.leodean.Cadastro.repositories.ICustomerRepository;
-import br.com.leodean.Cadastro.service.interfaces.IAccountService;
+import br.com.leodean.Cadastro.service.interfaces.IContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class AccountService implements IAccountService {
+public class ContaService implements IContaService {
 
     @Autowired
     private ICustomerRepository iCustomerRepository;

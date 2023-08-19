@@ -3,7 +3,7 @@ package br.com.leodean.Cadastro.controller;
 import br.com.leodean.Cadastro.domain.Customer;
 import br.com.leodean.Cadastro.domain.data.EnvelopData;
 import br.com.leodean.Cadastro.domain.dto.CustomerDTO;
-import br.com.leodean.Cadastro.service.interfaces.ICustomerService;
+import br.com.leodean.Cadastro.service.interfaces.IUsuarioService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,11 +19,11 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/api/customer")
-public class CustomerController {
+public class UsuarioController {
 
-    private final ICustomerService _customerService;
+    private final IUsuarioService _customerService;
 
-    public CustomerController(ICustomerService _customerService) {
+    public UsuarioController(IUsuarioService _customerService) {
         this._customerService = _customerService;
     }
 

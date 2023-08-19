@@ -11,6 +11,8 @@ import br.com.leodean.Cadastro.service.auth.TokenService;
 import br.com.leodean.Cadastro.service.interfaces.IAgendamentoService;
 import br.com.leodean.Cadastro.utils.ICalculaValorTransferencia;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -33,19 +35,19 @@ public class AgendamentoService implements IAgendamentoService {
     private TokenService tokenService;
 
     @Override
-    public List<AgendamentoDTO> listarAgendamentos(Pageable pageable){
+    public Page<AgendamentoDTO> listarAgendamentos(Pageable pageable){
 
         try{
             var customerID = tokenService.getCustomerIdByToken();
 
             List<AgendamentoDTO> listaAgendamentos = new ArrayList<>();
-            var agendamentosPaginadoList =  iAgendamentoRepository.findByIdPessoaOrigem(pageable,customerID).getContent();
+            var agendamentosPaginadoList =  iAgendamentoRepository.findByIdPessoaOrigem(pageable,customerID);
             for(AgendamentoDataBase agendamento : agendamentosPaginadoList){
                 var agendamentoDTO = AgendamentoMapper.mappToResponse(agendamento);
                 listaAgendamentos.add(agendamentoDTO);
             }
 
-            return listaAgendamentos;
+            return new PageImpl<>(listaAgendamentos);
         } catch (ExceptionApiCadastro e) {
             throw e;
         } catch (Exception e) {

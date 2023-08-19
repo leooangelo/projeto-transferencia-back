@@ -4,7 +4,7 @@ import br.com.leodean.Cadastro.domain.dto.CustomerDTO;
 import br.com.leodean.Cadastro.domain.mapper.CustomerMapper;
 import br.com.leodean.Cadastro.exceptions.ExceptionApiCadastro;
 import br.com.leodean.Cadastro.repositories.ICustomerRepository;
-import br.com.leodean.Cadastro.service.interfaces.ICustomerService;
+import br.com.leodean.Cadastro.service.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * Classe de serviço que manipula toda informação de customer
  */
 @Service
-public class CustomerService implements ICustomerService {
+public class UsuarioService implements IUsuarioService {
 
     @Autowired
     private ICustomerRepository customerRepository;
