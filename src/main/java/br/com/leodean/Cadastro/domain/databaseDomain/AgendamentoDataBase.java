@@ -23,6 +23,9 @@ public class AgendamentoDataBase {
     @Column(name = "id_transacao", nullable = false)
     private String idTransacao;
 
+    @Column(name = "id_pessoa_origem", nullable = false)
+    private String idPessoaOrigem;
+
     private String agenciaOrigem;
 
     private String contaOrigem;

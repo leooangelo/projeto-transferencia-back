@@ -22,7 +22,7 @@ public class AgendamentoDTO {
     private AccountDTO contaDestino;
 
     @JsonProperty("tipo_transacao")
-    private EnumTipoTransacao enumTipoTransacao;
+    private String enumTipoTransacao;
 
     @JsonProperty("valor")
     private BigDecimal valorTransacao;

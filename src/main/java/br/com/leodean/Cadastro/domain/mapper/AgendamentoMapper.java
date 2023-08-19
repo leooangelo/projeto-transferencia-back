@@ -2,6 +2,7 @@ package br.com.leodean.Cadastro.domain.mapper;
 
 import br.com.leodean.Cadastro.domain.AgendamentoRequest;
 import br.com.leodean.Cadastro.domain.databaseDomain.AgendamentoDataBase;
+import br.com.leodean.Cadastro.domain.dto.AccountDTO;
 import br.com.leodean.Cadastro.domain.dto.AgendamentoDTO;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +13,10 @@ import java.util.UUID;
 @Component
 public class AgendamentoMapper {
 
-    public static AgendamentoDataBase mappToDataBase(AgendamentoRequest request, BigDecimal taxaTransacao){
+    public static AgendamentoDataBase mappToDataBase(AgendamentoRequest request, BigDecimal taxaTransacao, String customerID){
         return AgendamentoDataBase.builder()
                 .idTransacao(UUID.randomUUID().toString())
+                .idPessoaOrigem(customerID)
                 .agenciaOrigem(request.getContaOrigem().getAgencia().toString())
                 .contaOrigem(request.getContaOrigem().getNumeroConta())
                 .agenciaDestino(request.getContaDestino().getAgencia().toString())
@@ -38,12 +40,31 @@ public class AgendamentoMapper {
                 .idTransacao(idTransacao)
                 .contaOrigem(request.getContaOrigem())
                 .contaDestino(request.getContaDestino())
-                .enumTipoTransacao(request.getEnumTipoTransacao())
+                .enumTipoTransacao(request.getEnumTipoTransacao().getNome())
                 .valorTransacao(request.getValorTransacao())
                 .dataAgendamento(request.getDataAgendamento())
                 .dataTransacao(request.getDataTransacao())
                 .valorTaxa(valorTaxa)
                 .valorTotal(request.getValorTotal())
+                .build();
+    }
+    public static AgendamentoDTO mappToResponse(AgendamentoDataBase agendamentoDataBase) {
+        return AgendamentoDTO.builder()
+                .idTransacao(agendamentoDataBase.getIdTransacao())
+                .contaOrigem(AccountDTO.builder()
+                        .numeroConta(agendamentoDataBase.getContaOrigem())
+                        .agencia(Long.parseLong(agendamentoDataBase.getAgenciaOrigem()))
+                        .build())
+                .contaDestino(AccountDTO.builder()
+                        .numeroConta(agendamentoDataBase.getContaDestino())
+                        .agencia(Long.parseLong(agendamentoDataBase.getAgenciaDestino()))
+                        .build())
+                .enumTipoTransacao(agendamentoDataBase.getTipoTransacao())
+                .valorTransacao(agendamentoDataBase.getValorTransacao())
+                .dataAgendamento(agendamentoDataBase.getDataAgendamento())
+                .dataTransacao(agendamentoDataBase.getDataTransacao())
+                .valorTaxa(agendamentoDataBase.getValorTaxa())
+                .valorTotal(agendamentoDataBase.getValorTotal())
                 .build();
     }
 }

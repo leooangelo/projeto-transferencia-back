@@ -2,19 +2,24 @@ package br.com.leodean.Cadastro.service;
 
 import br.com.leodean.Cadastro.domain.AgendamentoRequest;
 import br.com.leodean.Cadastro.domain.EnumTipoTransacao;
+import br.com.leodean.Cadastro.domain.databaseDomain.AgendamentoDataBase;
 import br.com.leodean.Cadastro.domain.dto.AgendamentoDTO;
 import br.com.leodean.Cadastro.domain.mapper.AgendamentoMapper;
 import br.com.leodean.Cadastro.exceptions.ExceptionApiCadastro;
 import br.com.leodean.Cadastro.repositories.IAgendamentoRepository;
+import br.com.leodean.Cadastro.service.auth.TokenService;
 import br.com.leodean.Cadastro.service.interfaces.IAgendamentoService;
 import br.com.leodean.Cadastro.utils.ICalculaValorTransferencia;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AgendamentoService implements IAgendamentoService {
@@ -23,14 +28,41 @@ public class AgendamentoService implements IAgendamentoService {
     private ICalculaValorTransferencia iCalculaValorTransferencia;
     @Autowired
     private IAgendamentoRepository iAgendamentoRepository;
+
+    @Autowired
+    private TokenService tokenService;
+
+    @Override
+    public List<AgendamentoDTO> listarAgendamentos(Pageable pageable){
+
+        try{
+            var customerID = tokenService.getCustomerIdByToken();
+
+            List<AgendamentoDTO> listaAgendamentos = new ArrayList<>();
+            var agendamentosPaginadoList =  iAgendamentoRepository.findByIdPessoaOrigem(pageable,customerID).getContent();
+            for(AgendamentoDataBase agendamento : agendamentosPaginadoList){
+                var agendamentoDTO = AgendamentoMapper.mappToResponse(agendamento);
+                listaAgendamentos.add(agendamentoDTO);
+            }
+
+            return listaAgendamentos;
+        } catch (ExceptionApiCadastro e) {
+            throw e;
+        } catch (Exception e) {
+            throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR, "AGENDAMENTO-01", e.getMessage());
+        }
+    }
+
     @Override
     public AgendamentoDTO createAgendamento(AgendamentoRequest request) {
 
         try{
+            var customerID = tokenService.getCustomerIdByToken();
+
             var taxaTransacao = tipoTaxaTrasacao(request);
             AgendamentoMapper.mappTaxaToObject(taxaTransacao, request);
 
-            var agendamentoDataBase = AgendamentoMapper.mappToDataBase(request,taxaTransacao);
+            var agendamentoDataBase = AgendamentoMapper.mappToDataBase(request,taxaTransacao, customerID);
 
             iAgendamentoRepository.save(agendamentoDataBase);
 
