@@ -1,9 +1,6 @@
 package br.com.leodean.Cadastro.service;
 
 import br.com.leodean.Cadastro.domain.AccountRequest;
-import br.com.leodean.Cadastro.domain.Customer;
-import br.com.leodean.Cadastro.domain.databaseDomain.AccountDataBase;
-import br.com.leodean.Cadastro.domain.databaseDomain.CustomerDataBase;
 import br.com.leodean.Cadastro.domain.dto.AccountDTO;
 import br.com.leodean.Cadastro.domain.mapper.AccountMapper;
 import br.com.leodean.Cadastro.exceptions.ExceptionApiCadastro;

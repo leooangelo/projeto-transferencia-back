@@ -31,7 +31,7 @@ public class AuthController {
 
         var userResponse = (CustomerDataBase) authentication.getPrincipal();
 
-       var token =  tokenService.gerarToken(userResponse);
+        var token =  tokenService.gerarToken(userResponse);
         return token;
     }
 }

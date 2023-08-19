@@ -20,7 +20,7 @@ public class AccountController {
     private IAccountService iAccountService;
 
     @PostMapping
-    public EnvelopData<AccountDTO> createAccout(@RequestBody @Valid AccountRequest request){
+    public EnvelopData<AccountDTO> createAccout(@RequestBody @Valid AccountRequest request) {
 
         return new EnvelopData<AccountDTO>(iAccountService.createAccout(request));
     }

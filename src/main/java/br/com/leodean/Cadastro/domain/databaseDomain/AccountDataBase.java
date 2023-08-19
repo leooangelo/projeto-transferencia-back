@@ -31,7 +31,7 @@ public class AccountDataBase  implements Serializable {
     @Column(name = "codigo_conta", nullable = false)
     private String numeroConta;
 
-    @Column(name = "Data_Criação", nullable = false)
-    private LocalDateTime localDate;
+    @Column(name = "data_registro", nullable = false)
+    private LocalDateTime dataRegistro;
 
 }

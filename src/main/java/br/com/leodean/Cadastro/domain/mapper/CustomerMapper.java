@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component
 public class CustomerMapper {
@@ -39,7 +38,7 @@ public class CustomerMapper {
                 .cell(request.getCell())
                 .password(new BCryptPasswordEncoder().encode(request.getPassword()))
                 .CPF(request.getCPF())
-                .localDate(LocalDateTime.now())
+                .dataRegistro(LocalDateTime.now())
                 .build();
     }
 

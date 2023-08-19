@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -46,8 +45,8 @@ public class CustomerDataBase implements Serializable, UserDetails {
     @Column(name = "CPF", nullable = false)
     private String CPF;
 
-    @Column(name = "Data_Criação", nullable = false)
-    private LocalDateTime localDate;
+    @Column(name = "data_registro", nullable = false)
+    private LocalDateTime dataRegistro;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

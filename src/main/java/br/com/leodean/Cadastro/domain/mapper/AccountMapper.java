@@ -30,7 +30,7 @@ public class AccountMapper {
                 .CPFCorrentista(customerDataBase.getCPF())
                 .agencia(request.getAgencia())
                 .numeroConta(conta)
-                .localDate(LocalDateTime.now())
+                .dataRegistro(LocalDateTime.now())
                 .build();
     }
 }
