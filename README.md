@@ -14,7 +14,7 @@ Na Base de dados foi determinando utilizar o Banco de dados relacional H2 e não
 
 ### Pré-requisitos
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Intellij](https://www.jetbrains.com/pt-br/idea/) ou [VSCode](https://code.visualstudio.com/), [Postman](https://www.postman.com/) e JDK 11.
+[Intellij](https://www.jetbrains.com/pt-br/idea/) ou [VSCode](https://code.visualstudio.com/), [Postman](https://www.postman.com/), JDK 11 e Git Bash.
 
 
 ### 🛠 Ferramentas Utilizadas
