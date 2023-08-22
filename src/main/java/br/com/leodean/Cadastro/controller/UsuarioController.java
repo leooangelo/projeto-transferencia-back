@@ -1,8 +1,8 @@
 package br.com.leodean.Cadastro.controller;
 
-import br.com.leodean.Cadastro.domain.Customer;
+import br.com.leodean.Cadastro.domain.Usuario;
 import br.com.leodean.Cadastro.domain.data.EnvelopData;
-import br.com.leodean.Cadastro.domain.dto.CustomerDTO;
+import br.com.leodean.Cadastro.domain.dto.UsuarioDTO;
 import br.com.leodean.Cadastro.service.interfaces.IUsuarioService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +14,7 @@ import javax.validation.Valid;
 
 /**
  * @author Leonardo Angelo
- * @since 25/01/2023
- * *
+ * @since 19/08/2023
  */
 @RestController
 @RequestMapping("/api/customer")
@@ -29,8 +28,8 @@ public class UsuarioController {
 
     @CacheEvict(value = "customer", allEntries = true)
     @PostMapping
-    public EnvelopData<CustomerDTO> createCustomer(@RequestBody @Valid Customer request) {
-        return new EnvelopData<CustomerDTO>(_customerService.createCustomer(request));
+    public EnvelopData<UsuarioDTO> createCustomer(@RequestBody @Valid Usuario request) {
+        return new EnvelopData<UsuarioDTO>(_customerService.createCustomer(request));
     }
 
 }

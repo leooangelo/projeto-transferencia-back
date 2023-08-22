@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/**
+ * @author Leonardo Angelo
+ * @since 19/08/2023
+ */
 @RestController
 @RequestMapping("/api/agendamento")
 public class AgendamentoController {

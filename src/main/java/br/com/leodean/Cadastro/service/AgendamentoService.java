@@ -9,7 +9,7 @@ import br.com.leodean.Cadastro.exceptions.ExceptionApiCadastro;
 import br.com.leodean.Cadastro.repositories.IAgendamentoRepository;
 import br.com.leodean.Cadastro.service.auth.TokenService;
 import br.com.leodean.Cadastro.service.interfaces.IAgendamentoService;
-import br.com.leodean.Cadastro.utils.ICalculaValorTransferencia;
+import br.com.leodean.Cadastro.utils.interfaces.ICalculaValorTransferencia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -23,6 +23,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Leonardo Angelo
+ * @since 19/08/2023
+ */
 @Service
 public class AgendamentoService implements IAgendamentoService {
 

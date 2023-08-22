@@ -1,22 +1,25 @@
 package br.com.leodean.Cadastro.service;
-import br.com.leodean.Cadastro.domain.Customer;
-import br.com.leodean.Cadastro.domain.dto.CustomerDTO;
-import br.com.leodean.Cadastro.domain.mapper.CustomerMapper;
+import br.com.leodean.Cadastro.domain.Usuario;
+import br.com.leodean.Cadastro.domain.dto.UsuarioDTO;
+import br.com.leodean.Cadastro.domain.mapper.UsuarioMapper;
 import br.com.leodean.Cadastro.exceptions.ExceptionApiCadastro;
-import br.com.leodean.Cadastro.repositories.ICustomerRepository;
+import br.com.leodean.Cadastro.repositories.IUsuarioRepository;
 import br.com.leodean.Cadastro.service.interfaces.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+
 /**
+ * @author Leonardo Angelo
+ * @since 19/08/2023
  * Classe de serviço que manipula toda informação de customer
  */
 @Service
 public class UsuarioService implements IUsuarioService {
 
     @Autowired
-    private ICustomerRepository customerRepository;
+    private IUsuarioRepository customerRepository;
 
     /**
      * Metodo que cria um usuário e salva no banco de dados;
@@ -25,15 +28,15 @@ public class UsuarioService implements IUsuarioService {
      * @return buildCustomer
      */
     @Override
-    public CustomerDTO createCustomer(Customer request) {
+    public UsuarioDTO createCustomer(Usuario request) {
         try {
             customerExist(request.getEmail(), request.getCell());
 
-            var customerDataBase = CustomerMapper.mappToDataBase(request);
+            var customerDataBase = UsuarioMapper.mappToDataBase(request);
 
             customerRepository.save(customerDataBase);
 
-            return CustomerMapper.mappToResponse(customerDataBase);
+            return UsuarioMapper.mappToResponse(customerDataBase);
         } catch (ExceptionApiCadastro e) {
             throw e;
         } catch (Exception e) {

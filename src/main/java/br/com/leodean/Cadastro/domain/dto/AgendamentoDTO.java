@@ -1,6 +1,5 @@
 package br.com.leodean.Cadastro.domain.dto;
 
-import br.com.leodean.Cadastro.domain.EnumTipoTransacao;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
@@ -16,10 +15,10 @@ public class AgendamentoDTO {
     private String idTransacao;
 
     @JsonProperty("conta_origem")
-    private AccountDTO contaOrigem;
+    private ContaDTO contaOrigem;
 
     @JsonProperty("conta_destino")
-    private AccountDTO contaDestino;
+    private ContaDTO contaDestino;
 
     @JsonProperty("tipo_transacao")
     private String enumTipoTransacao;

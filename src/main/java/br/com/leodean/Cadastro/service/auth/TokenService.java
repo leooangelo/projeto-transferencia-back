@@ -1,7 +1,7 @@
 package br.com.leodean.Cadastro.service.auth;
 
 
-import br.com.leodean.Cadastro.domain.databaseDomain.CustomerDataBase;
+import br.com.leodean.Cadastro.domain.databaseDomain.UsuarioDataBase;
 import br.com.leodean.Cadastro.infra.auth.TokenDecode;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -21,7 +21,7 @@ public class TokenService {
     @Autowired
     private HttpServletRequest request;
 
-    public String gerarToken(CustomerDataBase userResponse) {
+    public String gerarToken(UsuarioDataBase userResponse) {
 
         return JWT.create()
                 .withIssuer("Cadastro")

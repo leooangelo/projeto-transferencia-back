@@ -22,12 +22,12 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CustomerDataBase implements Serializable, UserDetails {
+public class UsuarioDataBase implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "Cutomer_id", nullable = false)
+    @Column(name = "usuario_id", nullable = false)
     private String customerID;
 
     @Column(name = "Name", nullable = false)

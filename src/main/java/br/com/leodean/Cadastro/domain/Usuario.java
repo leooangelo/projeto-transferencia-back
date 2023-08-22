@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Valid
-public class Customer {
+public class Usuario {
 
     @JsonProperty("id_cliente")
     private String customerID;

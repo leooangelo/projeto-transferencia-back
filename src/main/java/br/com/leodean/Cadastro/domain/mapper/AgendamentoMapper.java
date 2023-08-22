@@ -2,7 +2,7 @@ package br.com.leodean.Cadastro.domain.mapper;
 
 import br.com.leodean.Cadastro.domain.AgendamentoRequest;
 import br.com.leodean.Cadastro.domain.databaseDomain.AgendamentoDataBase;
-import br.com.leodean.Cadastro.domain.dto.AccountDTO;
+import br.com.leodean.Cadastro.domain.dto.ContaDTO;
 import br.com.leodean.Cadastro.domain.dto.AgendamentoDTO;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +10,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * @author Leonardo Angelo
+ * @since 19/08/2023
+ */
 @Component
 public class AgendamentoMapper {
 
@@ -51,11 +55,11 @@ public class AgendamentoMapper {
     public static AgendamentoDTO mappToResponse(AgendamentoDataBase agendamentoDataBase) {
         return AgendamentoDTO.builder()
                 .idTransacao(agendamentoDataBase.getIdTransacao())
-                .contaOrigem(AccountDTO.builder()
+                .contaOrigem(ContaDTO.builder()
                         .numeroConta(agendamentoDataBase.getContaOrigem())
                         .agencia(Long.parseLong(agendamentoDataBase.getAgenciaOrigem()))
                         .build())
-                .contaDestino(AccountDTO.builder()
+                .contaDestino(ContaDTO.builder()
                         .numeroConta(agendamentoDataBase.getContaDestino())
                         .agencia(Long.parseLong(agendamentoDataBase.getAgenciaDestino()))
                         .build())

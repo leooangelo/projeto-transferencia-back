@@ -1,8 +1,8 @@
 package br.com.leodean.Cadastro.service.interfaces;
 
-import br.com.leodean.Cadastro.domain.AccountRequest;
-import br.com.leodean.Cadastro.domain.dto.AccountDTO;
+import br.com.leodean.Cadastro.domain.Conta;
+import br.com.leodean.Cadastro.domain.dto.ContaDTO;
 
 public interface IContaService {
-    AccountDTO createAccout(AccountRequest request);
+    ContaDTO createAccout(Conta request);
 }

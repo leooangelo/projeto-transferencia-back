@@ -1,4 +1,4 @@
-package br.com.leodean.Cadastro.utils;
+package br.com.leodean.Cadastro.utils.interfaces;
 
 import java.math.BigDecimal;
 

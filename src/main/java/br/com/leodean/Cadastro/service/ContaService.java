@@ -1,35 +1,38 @@
 package br.com.leodean.Cadastro.service;
 
-import br.com.leodean.Cadastro.domain.AccountRequest;
-import br.com.leodean.Cadastro.domain.dto.AccountDTO;
-import br.com.leodean.Cadastro.domain.mapper.AccountMapper;
+import br.com.leodean.Cadastro.domain.Conta;
+import br.com.leodean.Cadastro.domain.dto.ContaDTO;
+import br.com.leodean.Cadastro.domain.mapper.ContaMapper;
 import br.com.leodean.Cadastro.exceptions.ExceptionApiCadastro;
-import br.com.leodean.Cadastro.repositories.IAccountRepository;
-import br.com.leodean.Cadastro.repositories.ICustomerRepository;
+import br.com.leodean.Cadastro.repositories.IContaRepository;
+import br.com.leodean.Cadastro.repositories.IUsuarioRepository;
 import br.com.leodean.Cadastro.service.interfaces.IContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-
+/**
+ * @author Leonardo Angelo
+ * @since 19/08/2023
+ */
 @Service
 public class ContaService implements IContaService {
 
     @Autowired
-    private ICustomerRepository iCustomerRepository;
+    private IUsuarioRepository iUsuarioRepository;
     @Autowired
-    private IAccountRepository iAccountRepository;
+    private IContaRepository iContaRepository;
 
     @Override
-    public AccountDTO createAccout(AccountRequest request) {
+    public ContaDTO createAccout(Conta request) {
         try {
-            var customer = iCustomerRepository.findByCPF(request.getCPFCorrentista()).orElseThrow(() -> new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CUSTOMER-03"));
+            var customer = iUsuarioRepository.findByCPF(request.getCPFCorrentista()).orElseThrow(() -> new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CUSTOMER-03"));
 
-            var accountDataBase = AccountMapper.mappToDataBase(request, customer);
+            var accountDataBase = ContaMapper.mappToDataBase(request, customer);
 
-            iAccountRepository.save(accountDataBase);
+            iContaRepository.save(accountDataBase);
 
-            return AccountMapper.mappToResponse(accountDataBase);
+            return ContaMapper.mappToResponse(accountDataBase);
 
         } catch (ExceptionApiCadastro e) {
             throw e;

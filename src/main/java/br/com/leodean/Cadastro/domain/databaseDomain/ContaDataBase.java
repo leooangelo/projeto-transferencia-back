@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AccountDataBase  implements Serializable {
+public class ContaDataBase implements Serializable {
 
     @Id
     @Column(name = "id_conta", nullable = false)

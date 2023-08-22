@@ -1,22 +1,50 @@
 package br.com.leodean.Cadastro.utils;
 
+import br.com.leodean.Cadastro.utils.interfaces.ICalculaValorTransferencia;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * @author Leonardo Angelo
+ * @since 18/08/2023
+ */
 @Component
-public class CalculaValorTransferencia implements ICalculaValorTransferencia{
+public class CalculaValorTransferencia implements ICalculaValorTransferencia {
+
+    @Value("${taxaTransfD0}")
+    private Double taxaTransfD0;
+
+    @Value("${taxaTransfD20}")
+    private Double taxaTransfD20;
+
+    @Value("${taxaTransfD30}")
+    private Double taxaTransfD30;
+
+    @Value("${taxaTransfD40}")
+    private Double taxaTransfD40;
+
+    @Value("${taxaTransfD}")
+    private Double taxaTransfD;
+
+    @Value("${acresimoTaxaD0}")
+    private Double acresimoTaxaD0;
+
+    @Value("${acresimoTaxaD10}")
+    private Double acresimoTaxaD10;
+
 
     public BigDecimal caculoValorTransferenciaD0(BigDecimal valorTransacao) {
-        var valorTransferido = valorTransacao.multiply(new BigDecimal(3.0)).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP);
-        var valorTotal = valorTransferido.add(new BigDecimal(3));
+        var valorTransferido = valorTransacao.multiply(new BigDecimal(taxaTransfD0)).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP);
+        var valorTotal = valorTransferido.add(new BigDecimal(acresimoTaxaD0));
 
         return valorTotal;
     }
 
     public BigDecimal calculaValorTransferenciaD10(BigDecimal valorTransacao){
-        var valorTotal = new BigDecimal(12);
+        var valorTotal = new BigDecimal(acresimoTaxaD10);
 
         return valorTotal;
     }
@@ -24,19 +52,19 @@ public class CalculaValorTransferencia implements ICalculaValorTransferencia{
     public BigDecimal calculaValorTransferenciaRegressiva(long diferencaData,BigDecimal valorTransacao){
 
         if(diferencaData <= 20L){
-            var valorTotal =  valorTransacao.multiply(new BigDecimal(8.2)).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP);
+            var valorTotal =  valorTransacao.multiply(new BigDecimal(taxaTransfD20)).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP);
             return valorTotal;
         }
         else if (diferencaData <= 30L){
-            var valorTotal =  valorTransacao.multiply(new BigDecimal(6.9)).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP);
+            var valorTotal =  valorTransacao.multiply(new BigDecimal(taxaTransfD30)).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP);
             return valorTotal;
         }
         else if(diferencaData <= 40L){
-            var valorTotal =  valorTransacao.multiply(new BigDecimal(4.7)).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP);
+            var valorTotal =  valorTransacao.multiply(new BigDecimal(taxaTransfD40)).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP);
             return valorTotal;
         }
 
-        var valorTotal =  valorTransacao.multiply(new BigDecimal(1.7)).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP);
+        var valorTotal =  valorTransacao.multiply(new BigDecimal(taxaTransfD)).divide(new BigDecimal(100)).setScale(2, RoundingMode.HALF_UP);
         return valorTotal;
     }
 

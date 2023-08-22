@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AccountDTO {
+public class ContaDTO {
 
     @JsonProperty("id_conta")
     private String account_id;

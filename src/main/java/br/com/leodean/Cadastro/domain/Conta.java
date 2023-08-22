@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AccountRequest {
+public class Conta {
 
     @NotBlank(message = "cpf nao pode estar vazio")
     @NotNull(message = "cpf é obrigatorio")

@@ -1,8 +1,8 @@
 package br.com.leodean.Cadastro.service.interfaces;
 
-import br.com.leodean.Cadastro.domain.Customer;
-import br.com.leodean.Cadastro.domain.dto.CustomerDTO;
+import br.com.leodean.Cadastro.domain.Usuario;
+import br.com.leodean.Cadastro.domain.dto.UsuarioDTO;
 
 public interface IUsuarioService {
-    CustomerDTO createCustomer(Customer request);
+    UsuarioDTO createCustomer(Usuario request);
 }
