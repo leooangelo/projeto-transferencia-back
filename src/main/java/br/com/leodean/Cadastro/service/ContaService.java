@@ -6,6 +6,7 @@ import br.com.leodean.Cadastro.domain.mapper.ContaMapper;
 import br.com.leodean.Cadastro.exceptions.ExceptionApiCadastro;
 import br.com.leodean.Cadastro.repositories.IContaRepository;
 import br.com.leodean.Cadastro.repositories.IUsuarioRepository;
+import br.com.leodean.Cadastro.service.auth.TokenService;
 import br.com.leodean.Cadastro.service.interfaces.IContaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,10 +24,16 @@ public class ContaService implements IContaService {
     @Autowired
     private IContaRepository iContaRepository;
 
+    @Autowired
+    private TokenService tokenService;
+
     @Override
     public ContaDTO createAccout(Conta request) {
         try {
-            var customer = iUsuarioRepository.findByCPF(request.getCPFCorrentista()).orElseThrow(() -> new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CUSTOMER-03"));
+            var customerID = tokenService.getCustomerIdByToken();
+
+            var customer = iUsuarioRepository.findByCustomerID(customerID);
+            contaExist(request.getAgencia(), request.getConta());
 
             var accountDataBase = ContaMapper.mappToDataBase(request, customer);
 
@@ -39,6 +46,14 @@ public class ContaService implements IContaService {
         } catch (Exception e) {
             throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR, "ACCOUNT-01", e.getMessage());
         }
+    }
+
+    private void contaExist(String agencia, String accountId) {
+
+        iContaRepository.findByAgenciaAndNumeroConta(agencia,accountId)
+                .ifPresent(check -> {
+                    throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR, "ACCOUNT-02");
+                });
     }
 }
 

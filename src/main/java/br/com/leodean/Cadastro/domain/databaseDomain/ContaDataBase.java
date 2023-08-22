@@ -20,7 +20,7 @@ public class ContaDataBase implements Serializable {
 
     @Id
     @Column(name = "id_conta", nullable = false)
-    private String account_id;
+    private String accountId;
 
     @Column(name = "id_correntista", nullable = false)
     private String CPFCorrentista;

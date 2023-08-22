@@ -6,11 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface IUsuarioRepository extends JpaRepository<UsuarioDataBase, String> {
-    List<UsuarioDataBase> findAllByOrderByNameAsc();
 
     Optional<UsuarioDataBase> findByEmail(String email);
 
@@ -19,5 +17,5 @@ public interface IUsuarioRepository extends JpaRepository<UsuarioDataBase, Strin
 
     Optional<UsuarioDataBase> findByCell(String cell);
 
-    Optional<UsuarioDataBase> findByCPF(String cpf);
+    UsuarioDataBase findByCustomerID(String customerID);
 }
