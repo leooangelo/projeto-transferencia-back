@@ -3,6 +3,7 @@ package br.com.leodean.Cadastro.service.auth;
 
 import br.com.leodean.Cadastro.domain.databaseDomain.UsuarioDataBase;
 import br.com.leodean.Cadastro.infra.auth.TokenDecode;
+import br.com.leodean.Cadastro.service.interfaces.auth.ITokenService;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,7 +17,7 @@ import java.time.ZoneOffset;
 import java.util.Base64;
 
 @Service
-public class TokenService {
+public class TokenService implements ITokenService {
 
     @Autowired
     private HttpServletRequest request;

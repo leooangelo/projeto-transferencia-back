@@ -24,7 +24,7 @@ public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @PostMapping("/login")
+    @PostMapping("/api/login")
     public String login(@RequestBody Login user){
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =

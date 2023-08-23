@@ -5,8 +5,11 @@ import br.com.leodean.Cadastro.domain.databaseDomain.UsuarioDataBase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+
+@Repository
 
 public interface IUsuarioRepository extends JpaRepository<UsuarioDataBase, String> {
 

@@ -8,6 +8,7 @@ import br.com.leodean.Cadastro.repositories.IContaRepository;
 import br.com.leodean.Cadastro.repositories.IUsuarioRepository;
 import br.com.leodean.Cadastro.service.auth.TokenService;
 import br.com.leodean.Cadastro.service.interfaces.IContaService;
+import br.com.leodean.Cadastro.service.interfaces.auth.ITokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,8 @@ public class ContaService implements IContaService {
     private IUsuarioRepository iUsuarioRepository;
     @Autowired
     private IContaRepository iContaRepository;
-
     @Autowired
-    private TokenService tokenService;
+    private ITokenService tokenService;
 
     @Override
     public ContaDTO createAccout(Conta request) {

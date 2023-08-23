@@ -9,6 +9,7 @@ import br.com.leodean.Cadastro.exceptions.ExceptionApiCadastro;
 import br.com.leodean.Cadastro.repositories.IAgendamentoRepository;
 import br.com.leodean.Cadastro.service.auth.TokenService;
 import br.com.leodean.Cadastro.service.interfaces.IAgendamentoService;
+import br.com.leodean.Cadastro.service.interfaces.auth.ITokenService;
 import br.com.leodean.Cadastro.utils.interfaces.ICalculaValorTransferencia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,9 +35,8 @@ public class AgendamentoService implements IAgendamentoService {
     private ICalculaValorTransferencia iCalculaValorTransferencia;
     @Autowired
     private IAgendamentoRepository iAgendamentoRepository;
-
     @Autowired
-    private TokenService tokenService;
+    private ITokenService tokenService;
 
     @Override
     public Page<AgendamentoDTO> listarAgendamentos(Pageable pageable){

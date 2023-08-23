@@ -1,11 +1,10 @@
 package br.com.leodean.Cadastro.controller;
 
-import br.com.leodean.Cadastro.domain.Usuario;
-import br.com.leodean.Cadastro.domain.dto.UsuarioDTO;
-import br.com.leodean.Cadastro.service.interfaces.IUsuarioService;
+import br.com.leodean.Cadastro.domain.Conta;
+import br.com.leodean.Cadastro.domain.dto.ContaDTO;
+import br.com.leodean.Cadastro.service.interfaces.IContaService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,59 +19,55 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.mockito.Mockito.*;
+import java.util.UUID;
+
+import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UsuarioControllerTests {
+public class ContaControllerTests {
 
     @InjectMocks
-    private UsuarioController usuarioController;
-
+    private ContaController contaController;
     @Autowired
     private MockMvc mockMvc;
-
     @Mock
-    private IUsuarioService iUsuarioService;
+    private IContaService iContaService;
 
     @BeforeEach
     public void init(){
         MockitoAnnotations.openMocks(this);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(usuarioController).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(contaController).build();
     }
+
     @Test
     public void createCustomer() throws Exception {
-        Mockito.when(iUsuarioService.createCustomer(any(Usuario.class))).thenReturn(mockUsuarioDTO());
+        Mockito.when(iContaService.createAccout(any(Conta.class))).thenReturn(mockContaDTO());
 
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/customer")
-                        .content(objectToJson(mockUsuario()))
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/account")
+                        .content(objectToJson(mockConta()))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
     }
 
-    private String objectToJson(Usuario usuario) throws JsonProcessingException {
+    private String objectToJson(Conta conta) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(usuario);
+        return mapper.writeValueAsString(conta);
     }
-
-    private Usuario mockUsuario(){
-        return Usuario.builder()
-                .name("Leonardo Angelo")
-                .cell("11916691211")
-                .email("leozncontato@gmail.com")
-                .CPF("46617438817")
-                .password("LeonardoTeste")
+    private ContaDTO mockContaDTO(){
+        return ContaDTO.builder()
+                .agencia(3747L)
+                .numeroConta("256524")
+                .account_id(UUID.randomUUID().toString())
                 .build();
     }
-    private UsuarioDTO mockUsuarioDTO(){
-        return UsuarioDTO.builder()
-                .customerID("4f50e961-5a28-4af7-8895-7512c4151331")
-                .name("Leonardo Angelo")
-                .cell("11916691211")
-                .email("leozncontato@gmail.com")
+    private Conta mockConta(){
+        return Conta.builder()
+                .agencia("3747")
+                .conta("256524")
                 .build();
     }
 }

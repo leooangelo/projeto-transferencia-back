@@ -2,6 +2,7 @@ package br.com.leodean.Cadastro.infra.auth;
 
 import br.com.leodean.Cadastro.repositories.IUsuarioRepository;
 import br.com.leodean.Cadastro.service.auth.TokenService;
+import br.com.leodean.Cadastro.service.interfaces.auth.ITokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +19,8 @@ import java.io.IOException;
 public class FilterToken extends OncePerRequestFilter {
 
     @Autowired
-    private TokenService tokenService;
+    private ITokenService tokenService;
+
 
     @Autowired
     private IUsuarioRepository usuarioRepository;
