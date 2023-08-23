@@ -7,9 +7,9 @@ import br.com.leodean.Cadastro.domain.dto.AgendamentoDTO;
 import br.com.leodean.Cadastro.domain.mapper.AgendamentoMapper;
 import br.com.leodean.Cadastro.exceptions.ExceptionApiCadastro;
 import br.com.leodean.Cadastro.repositories.IAgendamentoRepository;
-import br.com.leodean.Cadastro.service.auth.TokenService;
 import br.com.leodean.Cadastro.service.interfaces.IAgendamentoService;
 import br.com.leodean.Cadastro.service.interfaces.auth.ITokenService;
+import br.com.leodean.Cadastro.utils.DataValidatorUtil;
 import br.com.leodean.Cadastro.utils.interfaces.ICalculaValorTransferencia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -82,7 +82,7 @@ public class AgendamentoService implements IAgendamentoService {
 
 
     private BigDecimal tipoTaxaTrasacao(AgendamentoRequest request){
-        var diferencaData = verificaData(request.getDataTransacao(), request.getDataAgendamento());
+        var diferencaData = DataValidatorUtil.verificaData(request.getDataTransacao(), request.getDataAgendamento());
 
         if(request.getEnumTipoTransacao().getNome().equals(EnumTipoTransacao.TRANS_DIA.getNome()) && diferencaData == 0)
         {
@@ -104,8 +104,5 @@ public class AgendamentoService implements IAgendamentoService {
     }
 
 
-    private long verificaData(LocalDate dataTransacao, LocalDate dataAgendamento) {
-        var diferencaData = dataAgendamento.until(dataTransacao, ChronoUnit.DAYS);
-        return diferencaData;
-    }
+
 }

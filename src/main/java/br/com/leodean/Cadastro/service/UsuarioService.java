@@ -48,12 +48,12 @@ public class UsuarioService implements IUsuarioService {
 
         customerRepository.findByEmail(email)
                 .ifPresent(check -> {
-                    throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR, "CUSTOMER-06");
+                    throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CUSTOMER-06");
                 });
 
         customerRepository.findByCell(cell)
                 .ifPresent(check -> {
-                    throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR, "CUSTOMER-07");
+                    throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CUSTOMER-07");
                 });
     }
 }

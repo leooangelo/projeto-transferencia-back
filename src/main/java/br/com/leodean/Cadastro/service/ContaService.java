@@ -6,7 +6,6 @@ import br.com.leodean.Cadastro.domain.mapper.ContaMapper;
 import br.com.leodean.Cadastro.exceptions.ExceptionApiCadastro;
 import br.com.leodean.Cadastro.repositories.IContaRepository;
 import br.com.leodean.Cadastro.repositories.IUsuarioRepository;
-import br.com.leodean.Cadastro.service.auth.TokenService;
 import br.com.leodean.Cadastro.service.interfaces.IContaService;
 import br.com.leodean.Cadastro.service.interfaces.auth.ITokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +26,7 @@ public class ContaService implements IContaService {
     @Autowired
     private ITokenService tokenService;
 
-    @Override
-    public ContaDTO createAccout(Conta request) {
+    public ContaDTO createConta(Conta request) {
         try {
             var customerID = tokenService.getCustomerIdByToken();
 
@@ -52,7 +50,7 @@ public class ContaService implements IContaService {
 
         iContaRepository.findByAgenciaAndNumeroConta(agencia,accountId)
                 .ifPresent(check -> {
-                    throw new ExceptionApiCadastro(HttpStatus.INTERNAL_SERVER_ERROR, "ACCOUNT-02");
+                    throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "ACCOUNT-02");
                 });
     }
 }

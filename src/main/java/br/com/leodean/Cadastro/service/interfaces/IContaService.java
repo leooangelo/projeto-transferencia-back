@@ -4,5 +4,5 @@ import br.com.leodean.Cadastro.domain.Conta;
 import br.com.leodean.Cadastro.domain.dto.ContaDTO;
 
 public interface IContaService {
-    ContaDTO createAccout(Conta request);
+    ContaDTO createConta(Conta request);
 }

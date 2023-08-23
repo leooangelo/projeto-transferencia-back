@@ -43,7 +43,7 @@ public class ContaControllerTests {
 
     @Test
     public void createCustomer() throws Exception {
-        Mockito.when(iContaService.createAccout(any(Conta.class))).thenReturn(mockContaDTO());
+        Mockito.when(iContaService.createConta(any(Conta.class))).thenReturn(mockContaDTO());
 
         this.mockMvc.perform(MockMvcRequestBuilders.post("/api/account")
                         .content(objectToJson(mockConta()))

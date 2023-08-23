@@ -25,6 +25,6 @@ public class ContaController {
     @PostMapping
     public EnvelopData<ContaDTO> createAccout(@RequestBody @Valid Conta request) {
 
-        return new EnvelopData<ContaDTO>(iAccountService.createAccout(request));
+        return new EnvelopData<ContaDTO>(iAccountService.createConta(request));
     }
 }
