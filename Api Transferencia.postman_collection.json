@@ -1,0 +1,975 @@
+{
+	"info": {
+		"_postman_id": "40c41468-a130-4bea-98d1-45cdfd179c26",
+		"name": "Api Transferencia",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Gerar Token Aplicacao",
+			"item": [
+				{
+					"name": "Gerar Token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const token = pm.response.text();\r",
+									"console.log(\"token\",token)\r",
+									"pm.globals.set(\"accessToken\",token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"leozncontato@gmail.com\",\r\n    \"password\": \"Leo123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Novo  Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Leonardo Angelo\",\r\n    \"telefone\": \"11916691211\",\r\n    \"email\": \"leozncontato@gmail.com\",\r\n    \"password\": \"Leo123\",\r\n    \"cpf\": \"46617438817\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Criar Conta",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"conta\": \"123458\",\r\n    \"agencia\": \"3747\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/account",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transferencia",
+			"item": [
+				{
+					"name": "Lista Agendamentos",
+					"item": [
+						{
+							"name": "Listar Agendamentos Paginado",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento?page=0&size=3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tipo A",
+					"item": [
+						{
+							"name": "Tranf D0",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"123456\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"123458\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_DIA\",\r\n    \"valor\": 10.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-08-18\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tipo B",
+					"item": [
+						{
+							"name": "Tranf D10",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"123456\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"123458\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_DIA_10\",\r\n    \"valor\": 10.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-08-28\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tipo D",
+					"item": [
+						{
+							"name": "Tranf Tipo D Taxa A",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"519089\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"537939\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_TIPO_VALOR\",\r\n    \"valor\": 1000.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-08-29\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tranf Tipo D Taxa A2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"519089\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"537939\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_TIPO_VALOR\",\r\n    \"valor\": 800.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-08-29\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tranf Tipo D Taxa B",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"519089\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"537939\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_TIPO_VALOR\",\r\n    \"valor\": 1001.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-08-29\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tranf Tipo D Taxa B2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"519089\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"537939\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_TIPO_VALOR\",\r\n    \"valor\": 2000.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-08-29\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tranf Tipo D Taxa C D+20",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"123458\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"537939\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_TIPO_VALOR\",\r\n    \"valor\": 2001.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-09-07\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tranf Tipo D Taxa C D+30",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"519089\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"537939\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_TIPO_VALOR\",\r\n    \"valor\": 2001.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-09-17\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tranf Tipo D Taxa C D+40.",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"519089\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"537939\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_TIPO_VALOR\",\r\n    \"valor\": 2001.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-09-30\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tipo C",
+					"item": [
+						{
+							"name": "Tranf D10",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"519089\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"537939\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_RESGRESSIVA\",\r\n    \"valor\": 10.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-08-29\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tranf D20",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"519089\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"537939\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_RESGRESSIVA\",\r\n    \"valor\": 10.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-09-08\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tranf D30",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"123458\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"537939\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_RESGRESSIVA\",\r\n    \"valor\": 10.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-09-20\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Tranf D40",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"conta_origem\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"519089\"\r\n    },\r\n    \"conta_destino\": {\r\n        \"agencia\": \"3747\",\r\n        \"numero_conta\": \"537939\"\r\n    },\r\n    \"tipo_transacao\": \"TRANS_RESGRESSIVA\",\r\n    \"valor\": 10.00,\r\n    \"data_agendamento\": \"2018-08-18\",\r\n    \"data_transacao\": \"2018-09-30\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/agendamento",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"agendamento"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
