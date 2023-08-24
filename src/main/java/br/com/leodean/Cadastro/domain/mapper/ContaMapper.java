@@ -29,6 +29,7 @@ public class ContaMapper {
                 .accountId(UUID.randomUUID().toString())
                 .CPFCorrentista(usuarioDataBase.getCPF())
                 .agencia(request.getAgencia())
+                .idPessoaCorrentista(usuarioDataBase.getCustomerID())
                 .numeroConta(request.getConta())
                 .dataRegistro(LocalDateTime.now())
                 .build();

@@ -22,8 +22,11 @@ public class ContaDataBase implements Serializable {
     @Column(name = "id_conta", nullable = false)
     private String accountId;
 
-    @Column(name = "id_correntista", nullable = false)
+    @Column(name = "cpf_correntista", nullable = false)
     private String CPFCorrentista;
+
+    @Column(name = "id_pessoa_correntista", nullable = false)
+    private String idPessoaCorrentista;
 
     @Column(name = "agencia", nullable = false)
     private String agencia;

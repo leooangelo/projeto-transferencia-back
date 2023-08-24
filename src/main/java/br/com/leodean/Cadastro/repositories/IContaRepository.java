@@ -4,6 +4,7 @@ import br.com.leodean.Cadastro.domain.databaseDomain.ContaDataBase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -11,4 +12,6 @@ import java.util.Optional;
 public interface IContaRepository extends JpaRepository<ContaDataBase, String> {
 
     Optional<ContaDataBase> findByAgenciaAndNumeroConta( String agencia, String numeroConta);
+
+    List<ContaDataBase> findAllByIdPessoaCorrentista(String customerID);
 }

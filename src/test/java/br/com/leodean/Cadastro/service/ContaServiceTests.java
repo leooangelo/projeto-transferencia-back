@@ -18,6 +18,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -56,6 +58,16 @@ public class ContaServiceTests {
         assertNotNull(res);
     }
 
+    @Test
+    public void listaContas() throws JsonProcessingException {
+        when(tokenService.getCustomerIdByToken()).thenReturn("4f50e961-5a28-4af7-8895-7512c4151331");
+
+        when(iContaRepository.findAllByIdPessoaCorrentista("4f50e961-5a28-4af7-8895-7512c4151331")).thenReturn(mockContaDataBaseList());
+
+        var res = contaService.listarContas();
+        assertNotNull(res);
+    }
+
 
     @Test
     public void createAccoutValidation() throws JsonProcessingException {
@@ -85,6 +97,16 @@ public class ContaServiceTests {
             assertEquals(e.getCodigoErro(), "ACCOUNT-02");
             assertEquals(e.getStatus(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    private List<ContaDataBase> mockContaDataBaseList() {
+        return Arrays.asList(ContaDataBase.builder()
+                .agencia("3747")
+                .numeroConta("256524")
+                .CPFCorrentista("24117275003")
+                .dataRegistro(LocalDateTime.now())
+                .accountId(UUID.randomUUID().toString())
+                .build());
     }
     private ContaDataBase mockContaDataBase() {
         return ContaDataBase.builder()

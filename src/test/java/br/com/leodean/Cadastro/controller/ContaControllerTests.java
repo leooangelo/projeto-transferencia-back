@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -42,7 +43,7 @@ public class ContaControllerTests {
     }
 
     @Test
-    public void createCustomer() throws Exception {
+    public void createConta() throws Exception {
         Mockito.when(iContaService.createConta(any(Conta.class))).thenReturn(mockContaDTO());
 
         this.mockMvc.perform(MockMvcRequestBuilders.post("/api/account")
@@ -53,10 +54,21 @@ public class ContaControllerTests {
                 .andReturn();
     }
 
+    @Test
+    public void listarContas() throws Exception {
+        Mockito.when(iContaService.listarContas()).thenReturn(Arrays.asList(mockContaDTO()));
+
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/account")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful())
+                .andReturn();
+    }
     private String objectToJson(Conta conta) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(conta);
     }
+
     private ContaDTO mockContaDTO(){
         return ContaDTO.builder()
                 .agencia(3747L)
@@ -64,6 +76,7 @@ public class ContaControllerTests {
                 .account_id(UUID.randomUUID().toString())
                 .build();
     }
+
     private Conta mockConta(){
         return Conta.builder()
                 .agencia("3747")
