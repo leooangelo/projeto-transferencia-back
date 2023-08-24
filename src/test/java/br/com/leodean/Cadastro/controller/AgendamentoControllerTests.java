@@ -8,6 +8,7 @@ import br.com.leodean.Cadastro.domain.dto.ContaDTO;
 import br.com.leodean.Cadastro.service.interfaces.IAgendamentoService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -52,7 +53,7 @@ public class AgendamentoControllerTests {
     public void createAgendamento() throws Exception {
         Mockito.when(iAgendamentoService.createAgendamento(any(AgendamentoRequest.class))).thenReturn(mockAgendamentoDTO());
 
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/account")
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/agendamento")
                         .content(objectToJson(mockAgendamento()))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -103,7 +104,7 @@ public class AgendamentoControllerTests {
                 .build();
     }
     private String objectToJson(AgendamentoRequest agendamento) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
         return mapper.writeValueAsString(agendamento);
     }
 }

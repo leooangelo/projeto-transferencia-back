@@ -3,6 +3,7 @@ package br.com.leodean.Cadastro.controller;
 import br.com.leodean.Cadastro.domain.Login;
 import br.com.leodean.Cadastro.domain.databaseDomain.UsuarioDataBase;
 import br.com.leodean.Cadastro.service.auth.TokenService;
+import br.com.leodean.Cadastro.service.interfaces.auth.ITokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     @Autowired
-    private TokenService tokenService;
+    private ITokenService tokenService;
 
     @Autowired
     private AuthenticationManager authenticationManager;

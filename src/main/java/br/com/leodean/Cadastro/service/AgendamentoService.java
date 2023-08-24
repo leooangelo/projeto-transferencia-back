@@ -99,8 +99,10 @@ public class AgendamentoService implements IAgendamentoService {
             return iCalculaValorTransferencia.calculaValorTransferenciaRegressiva(diferencaData,request.getValorTransacao());
         }
 
-        return iCalculaValorTransferencia.caculaValorTransferenciaTipoValor(diferencaData,request.getValorTransacao());
+        else if(request.getEnumTipoTransacao().getNome().equals(EnumTipoTransacao.TRANS_TIPO_VALOR.getNome()))
+            return iCalculaValorTransferencia.caculaValorTransferenciaTipoValor(diferencaData,request.getValorTransacao());
 
+        return new BigDecimal("0");
     }
 
 
