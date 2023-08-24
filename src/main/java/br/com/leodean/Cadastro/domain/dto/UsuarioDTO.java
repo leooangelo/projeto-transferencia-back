@@ -4,15 +4,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import java.util.List;
-
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CustomerDTO {
+public class UsuarioDTO {
 
     @JsonProperty("id_cliente")
     private String customerID;
@@ -25,11 +23,4 @@ public class CustomerDTO {
 
     @JsonProperty("email")
     private String email;
-
-    @JsonProperty("carros")
-    private List<String> carsList;
-
-    @JsonProperty("enderecos")
-    private List<String> addressList;
-
 }

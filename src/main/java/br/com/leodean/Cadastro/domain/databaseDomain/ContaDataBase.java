@@ -16,11 +16,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AccountDataBase  implements Serializable {
+public class ContaDataBase implements Serializable {
 
     @Id
     @Column(name = "id_conta", nullable = false)
-    private String account_id;
+    private String accountId;
 
     @Column(name = "id_correntista", nullable = false)
     private String CPFCorrentista;
@@ -31,7 +31,7 @@ public class AccountDataBase  implements Serializable {
     @Column(name = "codigo_conta", nullable = false)
     private String numeroConta;
 
-    @Column(name = "Data_Criação", nullable = false)
-    private LocalDateTime localDate;
+    @Column(name = "data_registro", nullable = false)
+    private LocalDateTime dataRegistro;
 
 }

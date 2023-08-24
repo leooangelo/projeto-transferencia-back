@@ -23,11 +23,13 @@ public class Configurations {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.headers().frameOptions().disable();
     return http.csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and().authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/login", "/api/user","/api/customer")
+            .antMatchers(HttpMethod.POST, "/api/login","/api/customer","/h2-console/**")
             .permitAll()
+            .antMatchers("/h2-console/**", "/h2/**").permitAll()
             .anyRequest().authenticated()
             .and().cors()
             .and().addFilterBefore(filter,  UsernamePasswordAuthenticationFilter.class)
