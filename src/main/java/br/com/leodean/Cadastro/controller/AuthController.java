@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 /**
  * @author Leonardo Angelo
  * @since 19/08/2023
@@ -26,7 +28,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/api/login")
-    public String login(@RequestBody Login user){
+    public String login(@RequestBody @Valid Login user){
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                 new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());

@@ -11,6 +11,9 @@ import java.time.LocalDate;
 @Builder
 public class AgendamentoDTO {
 
+    @JsonProperty("id")
+    private Long id;
+    
     @JsonProperty("id_transacao")
     private String idTransacao;
 

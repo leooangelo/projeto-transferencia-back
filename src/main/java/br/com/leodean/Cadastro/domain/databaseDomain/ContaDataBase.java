@@ -2,10 +2,7 @@ package br.com.leodean.Cadastro.domain.databaseDomain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -19,6 +16,9 @@ import java.time.LocalDateTime;
 public class ContaDataBase implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "id_conta", nullable = false)
     private String accountId;
 

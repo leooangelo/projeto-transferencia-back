@@ -72,7 +72,7 @@ public class AgendamentoService implements IAgendamentoService {
 
             iAgendamentoRepository.save(agendamentoDataBase);
 
-            return AgendamentoMapper.mappToResponse(agendamentoDataBase.getIdTransacao(),request,taxaTransacao);
+            return AgendamentoMapper.mappToResponse(agendamentoDataBase.getId(),agendamentoDataBase.getIdTransacao(),request,taxaTransacao);
         } catch (ExceptionApiCadastro e) {
             throw e;
         } catch (Exception e) {

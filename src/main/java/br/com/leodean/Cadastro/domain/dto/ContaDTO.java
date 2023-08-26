@@ -12,6 +12,9 @@ import lombok.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ContaDTO {
 
+    @JsonProperty("id")
+    private Long id;
+
     @JsonProperty("id_conta")
     private String account_id;
 

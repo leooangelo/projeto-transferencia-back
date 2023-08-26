@@ -18,6 +18,7 @@ public class ContaMapper {
 
     public static ContaDTO mappToResponse(ContaDataBase contaDataBase) {
         return ContaDTO.builder()
+                .id(contaDataBase.getId())
                 .account_id(contaDataBase.getAccountId())
                 .agencia(Long.parseLong(contaDataBase.getAgencia()))
                 .numeroConta(contaDataBase.getNumeroConta())

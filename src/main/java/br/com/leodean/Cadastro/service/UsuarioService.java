@@ -30,7 +30,7 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public UsuarioDTO createCustomer(Usuario request) {
         try {
-            customerExist(request.getEmail(), request.getCell());
+            customerExist(request.getEmail(), request.getCell(), request.getCPF());
 
             var customerDataBase = UsuarioMapper.mappToDataBase(request);
 
@@ -44,7 +44,7 @@ public class UsuarioService implements IUsuarioService {
         }
     }
 
-    private void customerExist(String email, String cell) {
+    private void customerExist(String email, String cell, String cpf) {
 
         customerRepository.findByEmail(email)
                 .ifPresent(check -> {
@@ -54,6 +54,11 @@ public class UsuarioService implements IUsuarioService {
         customerRepository.findByCell(cell)
                 .ifPresent(check -> {
                     throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CUSTOMER-07");
+                });
+
+        customerRepository.findByCPF(cpf)
+                .ifPresent(check -> {
+                    throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "CUSTOMER-08");
                 });
     }
 }

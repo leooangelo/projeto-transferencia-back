@@ -39,8 +39,9 @@ public class AgendamentoMapper {
         request.setValorTotal(taxaTransacao.add(request.getValorTransacao()));
     }
 
-    public static AgendamentoDTO mappToResponse(String idTransacao,AgendamentoRequest request, BigDecimal valorTaxa) {
+    public static AgendamentoDTO mappToResponse(Long id,String idTransacao,AgendamentoRequest request, BigDecimal valorTaxa) {
         return AgendamentoDTO.builder()
+                .id(id)
                 .idTransacao(idTransacao)
                 .contaOrigem(request.getContaOrigem())
                 .contaDestino(request.getContaDestino())
@@ -54,6 +55,7 @@ public class AgendamentoMapper {
     }
     public static AgendamentoDTO mappToResponse(AgendamentoDataBase agendamentoDataBase) {
         return AgendamentoDTO.builder()
+                .id(agendamentoDataBase.getId())
                 .idTransacao(agendamentoDataBase.getIdTransacao())
                 .contaOrigem(ContaDTO.builder()
                         .numeroConta(agendamentoDataBase.getContaOrigem())

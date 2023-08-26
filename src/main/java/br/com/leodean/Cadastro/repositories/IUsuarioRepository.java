@@ -21,4 +21,6 @@ public interface IUsuarioRepository extends JpaRepository<UsuarioDataBase, Strin
     Optional<UsuarioDataBase> findByCell(String cell);
 
     UsuarioDataBase findByCustomerID(String customerID);
+
+    Optional<UsuarioDataBase> findByCPF(String cpf);
 }
