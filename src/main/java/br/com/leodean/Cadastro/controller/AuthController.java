@@ -2,7 +2,6 @@ package br.com.leodean.Cadastro.controller;
 
 import br.com.leodean.Cadastro.domain.Login;
 import br.com.leodean.Cadastro.domain.databaseDomain.UsuarioDataBase;
-import br.com.leodean.Cadastro.service.auth.TokenService;
 import br.com.leodean.Cadastro.service.interfaces.auth.ITokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,7 +27,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/api/login")
-    public String login(@RequestBody @Valid Login user){
+    public String login(@RequestBody @Valid Login user) {
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                 new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
@@ -38,7 +37,7 @@ public class AuthController {
 
         var userResponse = (UsuarioDataBase) authentication.getPrincipal();
 
-        var token =  tokenService.gerarToken(userResponse);
+        var token = tokenService.gerarToken(userResponse);
         return token;
     }
 }

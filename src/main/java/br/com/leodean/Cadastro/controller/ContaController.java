@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+
 /**
  * @author Leonardo Angelo
  * @since 19/08/2023
@@ -27,7 +28,7 @@ public class ContaController {
     }
 
     @GetMapping
-    public EnvelopData<List<ContaDTO>> listarContas(){
+    public EnvelopData<List<ContaDTO>> listarContas() {
         return new EnvelopData<List<ContaDTO>>(iAccountService.listarContas());
     }
 }

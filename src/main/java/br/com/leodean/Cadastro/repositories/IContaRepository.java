@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface IContaRepository extends JpaRepository<ContaDataBase, String> {
 
-    Optional<ContaDataBase> findByAgenciaAndNumeroConta( String agencia, String numeroConta);
+    Optional<ContaDataBase> findByAgenciaAndNumeroConta(String agencia, String numeroConta);
 
     List<ContaDataBase> findAllByIdPessoaCorrentista(String customerID);
 }

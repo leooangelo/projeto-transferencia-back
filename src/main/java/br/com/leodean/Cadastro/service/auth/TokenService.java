@@ -42,7 +42,7 @@ public class TokenService implements ITokenService {
     }
 
     public String getCustomerIdByToken() throws JsonProcessingException {
-        var tokenFormat = request.getHeader("authorization").replace("Bearer ","");
+        var tokenFormat = request.getHeader("authorization").replace("Bearer ", "");
         var token = tokenFormat.split("\\.");
 
         String base64EncodedHeader = token[0];

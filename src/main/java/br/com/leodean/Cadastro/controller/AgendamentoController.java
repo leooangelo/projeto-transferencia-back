@@ -23,12 +23,12 @@ public class AgendamentoController {
     private IAgendamentoService iAgendamentoService;
 
     @GetMapping()
-    private EnvelopData<Page<AgendamentoDTO>> listarAgendamentos(Pageable pageable){
+    private EnvelopData<Page<AgendamentoDTO>> listarAgendamentos(Pageable pageable) {
         return new EnvelopData<Page<AgendamentoDTO>>(iAgendamentoService.listarAgendamentos(pageable));
     }
 
     @PostMapping()
-    private EnvelopData<AgendamentoDTO> createAgendamento(@RequestBody @Valid AgendamentoRequest request){
+    private EnvelopData<AgendamentoDTO> createAgendamento(@RequestBody @Valid AgendamentoRequest request) {
 
         return new EnvelopData<AgendamentoDTO>(iAgendamentoService.createAgendamento(request));
     }

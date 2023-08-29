@@ -19,7 +19,7 @@ public class AgendamentoDataBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "id_transacao", nullable = false)
     private String idTransacao;
 

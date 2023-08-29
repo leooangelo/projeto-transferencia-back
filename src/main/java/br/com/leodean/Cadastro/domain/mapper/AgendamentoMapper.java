@@ -2,8 +2,8 @@ package br.com.leodean.Cadastro.domain.mapper;
 
 import br.com.leodean.Cadastro.domain.AgendamentoRequest;
 import br.com.leodean.Cadastro.domain.databaseDomain.AgendamentoDataBase;
-import br.com.leodean.Cadastro.domain.dto.ContaDTO;
 import br.com.leodean.Cadastro.domain.dto.AgendamentoDTO;
+import br.com.leodean.Cadastro.domain.dto.ContaDTO;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -17,7 +17,7 @@ import java.util.UUID;
 @Component
 public class AgendamentoMapper {
 
-    public static AgendamentoDataBase mappToDataBase(AgendamentoRequest request, BigDecimal taxaTransacao, String customerID){
+    public static AgendamentoDataBase mappToDataBase(AgendamentoRequest request, BigDecimal taxaTransacao, String customerID) {
         return AgendamentoDataBase.builder()
                 .idTransacao(UUID.randomUUID().toString())
                 .idPessoaOrigem(customerID)
@@ -39,7 +39,7 @@ public class AgendamentoMapper {
         request.setValorTotal(taxaTransacao.add(request.getValorTransacao()));
     }
 
-    public static AgendamentoDTO mappToResponse(Long id,String idTransacao,AgendamentoRequest request, BigDecimal valorTaxa) {
+    public static AgendamentoDTO mappToResponse(Long id, String idTransacao, AgendamentoRequest request, BigDecimal valorTaxa) {
         return AgendamentoDTO.builder()
                 .id(id)
                 .idTransacao(idTransacao)
@@ -53,6 +53,7 @@ public class AgendamentoMapper {
                 .valorTotal(request.getValorTotal())
                 .build();
     }
+
     public static AgendamentoDTO mappToResponse(AgendamentoDataBase agendamentoDataBase) {
         return AgendamentoDTO.builder()
                 .id(agendamentoDataBase.getId())

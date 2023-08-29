@@ -15,7 +15,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 public class SwaggerConfig {
 
     @Bean
-    public Docket api(){
+    public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.leodean.Cadastro.controller"))
@@ -24,7 +24,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo());
     }
 
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Api de Cadastro")
                 .description("Api de Cadastro ")
@@ -32,7 +32,7 @@ public class SwaggerConfig {
                 .build();
     }
 
-    private ApiKey apiKey(){
+    private ApiKey apiKey() {
         return new ApiKey("jwtToken", "Authorization", "header");
     }
 }

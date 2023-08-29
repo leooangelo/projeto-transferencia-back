@@ -1,7 +1,6 @@
 package br.com.leodean.Cadastro.infra.auth;
 
 import br.com.leodean.Cadastro.repositories.IUsuarioRepository;
-import br.com.leodean.Cadastro.service.auth.TokenService;
 import br.com.leodean.Cadastro.service.interfaces.auth.ITokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,7 +31,7 @@ public class FilterToken extends OncePerRequestFilter {
 
         var authorizationHeader = request.getHeader("Authorization");
 
-        if(authorizationHeader != null){
+        if (authorizationHeader != null) {
 
             token = authorizationHeader.replace("Bearer ", "");
 

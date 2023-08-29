@@ -60,11 +60,11 @@ public class ContaService implements IContaService {
             var listaContaDB = iContaRepository.findAllByIdPessoaCorrentista(customerID);
             List<ContaDTO> listaContas = new ArrayList<>();
 
-            for(ContaDataBase conta : listaContaDB){
+            for (ContaDataBase conta : listaContaDB) {
                 var accountDTO = ContaMapper.mappToResponse(conta);
                 listaContas.add(accountDTO);
             }
-            
+
             return listaContas;
         } catch (ExceptionApiCadastro e) {
             throw e;
@@ -75,7 +75,7 @@ public class ContaService implements IContaService {
 
     private void contaExist(String agencia, String accountId) {
 
-        iContaRepository.findByAgenciaAndNumeroConta(agencia,accountId)
+        iContaRepository.findByAgenciaAndNumeroConta(agencia, accountId)
                 .ifPresent(check -> {
                     throw new ExceptionApiCadastro(HttpStatus.BAD_REQUEST, "ACCOUNT-02");
                 });

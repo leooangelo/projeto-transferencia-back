@@ -6,7 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor
@@ -14,13 +15,13 @@ import javax.validation.constraints.*;
 @Builder
 public class Login {
 
-    @NotBlank(message = "Email nao pode estar vazio")
-    @NotNull(message = "Email é obrigatorio")
+    @NotBlank(message = "Email não pode estar vazio")
+    @NotNull(message = "Email é obrigatório")
     @JsonProperty("email")
     private String email;
 
-    @NotBlank(message = "Senha nao pode estar vazio")
-    @NotNull(message = "Senha é obrigatorio")
+    @NotBlank(message = "Senha não pode estar vazio")
+    @NotNull(message = "Senha é obrigatório")
     @JsonProperty("password")
     private String password;
 }

@@ -7,7 +7,7 @@ public interface ICalculaValorTransferencia {
 
     BigDecimal calculaValorTransferenciaD10(BigDecimal valorTransacao);
 
-    BigDecimal calculaValorTransferenciaRegressiva(long diferencaData,BigDecimal valorTransacao);
+    BigDecimal calculaValorTransferenciaRegressiva(long diferencaData, BigDecimal valorTransacao);
 
-    BigDecimal caculaValorTransferenciaTipoValor(long diferencaData,BigDecimal valorTransacao);
+    BigDecimal caculaValorTransferenciaTipoValor(long diferencaData, BigDecimal valorTransacao);
 }

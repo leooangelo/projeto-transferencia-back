@@ -19,19 +19,19 @@ import java.time.LocalDate;
 @Valid
 public class AgendamentoRequest {
 
-    @NotNull(message = "Conta Origem é obrigatorio")
+    @NotNull(message = "Conta Origem é obrigatório")
     @JsonProperty("conta_origem")
     private ContaDTO contaOrigem;
 
-    @NotNull(message = "Conta Destino é obrigatorio")
+    @NotNull(message = "Conta Destino é obrigatório")
     @JsonProperty("conta_destino")
     private ContaDTO contaDestino;
 
-    @NotNull(message = "Tipo Transacao é obrigatorio")
+    @NotNull(message = "Tipo Transacao é obrigatório")
     @JsonProperty("tipo_transacao")
     private EnumTipoTransacao enumTipoTransacao;
 
-    @NotNull(message = "Valor é obrigatorio")
+    @NotNull(message = "Valor é obrigatório")
     @JsonProperty("valor")
     private BigDecimal valorTransacao;
 
@@ -40,7 +40,7 @@ public class AgendamentoRequest {
     @JsonProperty("data_transacao")
     private LocalDate dataTransacao;
 
-    @NotNull(message = "Data Agendamento  é obrigatorio")
+    @NotNull(message = "Data Agendamento é obrigatório")
     @JsonProperty("data_agendamento")
     private LocalDate dataAgendamento;
 
